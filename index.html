@@ -147,15 +147,7 @@ var DB_STORE="appstate";
 var DB_VERSION=1;
 
 // ===== デフォルト項目 =====
-var DEFAULT_ITEMS=[
-  {id:"hair_dye",icon:"💈",name:"白髪染め"},
-  {id:"ac_filter",icon:"❄️",name:"エアコンフィルター掃除"},
-  {id:"air_purifier",icon:"💨",name:"空気清浄機フィルター"},
-  {id:"futon",icon:"🛏️",name:"布団干し"},
-  {id:"tire",icon:"🚗",name:"タイヤ空気圧チェック"},
-  {id:"drain",icon:"🚿",name:"排水口掃除"},
-  {id:"disaster",icon:"🎒",name:"防災グッズ点検"}
-];
+var DEFAULT_ITEMS=[];
 
 // ===== STATE =====
 function defaultState(){
@@ -387,7 +379,8 @@ function renderHome(){
   if(!D.items.length){
     var em=h("div",{cls:"empty"});
     em.appendChild(h("div",{stl:{fontSize:"64px",marginBottom:"16px"}},"🕐"));
-    em.appendChild(h("p",{stl:{fontSize:"17px",color:"#4a5268",lineHeight:"1.8"}},"項目を追加して\n打刻を始めましょう"));
+    em.appendChild(h("p",{stl:{fontSize:"17px",color:"#4a5268",lineHeight:"2"}},"「最後にいつやったっけ？」\nと思うことを登録しましょう"));
+    em.appendChild(h("p",{stl:{fontSize:"13px",color:"#8a92a8",marginTop:"8px"}},"白髪染め・フィルター掃除・水やりなど何でも"));
     el.appendChild(em);
   }
 
