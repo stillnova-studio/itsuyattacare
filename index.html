@@ -847,6 +847,10 @@ function renderSettings(){
   // links
   var s5=h("div",{cls:"sc"});
   s5.appendChild(h("h3",{cls:"st"},"🔗 リンク"));
+  var lk1=h("button",{cls:"tr",stl:{cursor:"pointer",width:"100%"},onclick:function(){window.open("privacy-policy.html","_blank")}});
+  lk1.appendChild(h("span",{cls:"tl"},"📄 プライバシーポリシー・利用規約"));
+  lk1.appendChild(h("span",{stl:{color:"#b0b8c8"}},"▶"));
+  s5.appendChild(lk1);
   var lk2=h("button",{cls:"tr",stl:{cursor:"pointer",width:"100%"},onclick:function(){window.open("https://note.com/stillnova_studio","_blank")}});
   lk2.appendChild(h("span",{cls:"tl"},"📝 開発者ノート"));
   lk2.appendChild(h("span",{stl:{color:"#b0b8c8"}},"▶"));
