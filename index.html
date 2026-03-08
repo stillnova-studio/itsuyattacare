@@ -830,21 +830,14 @@ function renderSettings(){
   rst.appendChild(h("div",{stl:{fontSize:"13px",color:"#8a92a8",marginBottom:"10px"}},"すべての項目と打刻履歴を削除して初期状態に戻します。事前にバックアップをお勧めします。"));
   rst.appendChild(h("button",{cls:"ch dg",onclick:function(){
     openConfirm("⚠️ 全データリセット","本当にすべてのデータを削除しますか？\nこの操作は取り消せません。",function(){
-      // DBごと削除して確実にリセット
-      var delReq=indexedDB.deleteDatabase(DB_NAME);
-      delReq.onsuccess=function(){
-        ST=defaultState();ST.settings.onboarded=true;D=ST.data;
-        dbReady=false;
-        initStorage().then(function(){
-          saveState();
-          closeModal();toast("🗑️ リセットしました");R();
-        });
-      };
-      delReq.onerror=function(){
-        // 削除失敗時はputで上書き
-        ST=defaultState();ST.settings.onboarded=true;D=ST.data;
-        idbSave(ST).then(function(){closeModal();toast("🗑️ リセットしました");R()}).catch(function(){closeModal();toast("⚠️ リセットに失敗しました");R()})
-      };
+      var fresh=defaultState();fresh.settings.onboarded=true;
+      idbSave(fresh).then(function(){
+        ST=fresh;D=ST.data;
+        try{localStorage.removeItem(STORAGE_KEY)}catch(e){}
+        closeModal();toast("🗑️ リセットしました");R();
+      }).catch(function(){
+        closeModal();toast("⚠️ リセットに失敗しました");R();
+      });
     });
   }},"🗑️ リセットする"));
   rs.appendChild(rst);s4.appendChild(rs);
